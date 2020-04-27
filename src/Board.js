@@ -3,21 +3,21 @@ import Cell from './Cell'
 import { Grid, Row } from 'react-flexbox-grid'
 
 const GRID = {
-  row1: ['col1', 'col2', 'col3'],
-  row2: ['col1', 'col2', 'col3'],
-  row3: ['col1', 'col2', 'col3'],
+  a: [1, 2, 3],
+  b: [1, 2, 3],
+  c: [1, 2, 3],
 }
 
 class Board extends React.Component {
-  renderBoardRow = row => {
-    return GRID[row].map(el => <Cell key={el} row={row} el={el} />);
+  renderBoardCols = row => {
+    return GRID[row].map(col => <Cell key={col} position={`${col}` + `${row}`} turn={this.props.turn} takeTurn={this.props.takeTurn} />);
   }
 
-  renderBoardCols = () => {
+  renderBoardRows = () => {
     return Object.keys(GRID).map(row => {
       return (
         <Row key={row}>
-          {this.renderBoardRow(row)}
+          {this.renderBoardCols(row)}
         </Row>
       )
     })
@@ -27,7 +27,7 @@ class Board extends React.Component {
     return (
       <div className="board">
         <Grid fluid>
-          {this.renderBoardCols()}
+          {this.renderBoardRows()}
         </Grid>
       </div>
     )
