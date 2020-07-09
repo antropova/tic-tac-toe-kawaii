@@ -15,15 +15,14 @@ class Cell extends React.Component {
   }
 
   onClick = () => {
-    const { position, takeTurn, turn } = this.props
-    console.log(position)
+    const { row, position, takeTurn, turn } = this.props
     const { taken } = this.state
 
     if (!taken) {
-      if (turn === 'X') this.setState({ mood: 'ko', color: 'pink' })
-      if (turn === 'O') this.setState({ mood: 'shocked', color: 'yellow' })
+      if (turn === 'x') this.setState({ mood: 'ko', color: 'pink' })
+      if (turn === 'o') this.setState({ mood: 'shocked', color: 'yellow' })
       this.setState({ taken: true })
-      takeTurn()
+      takeTurn(row, position)
     }
 
     // change x/o

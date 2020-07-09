@@ -2,21 +2,30 @@ import React from 'react'
 import Cell from './Cell'
 
 const GRID = {
-  a: [1, 2, 3],
-  b: [1, 2, 3],
-  c: [1, 2, 3],
+  a: [0, 1, 2],
+  b: [0, 1, 2],
+  c: [0, 1, 2],
 }
 
 const CELLS = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 class Board extends React.Component {
   renderCells = () => {
-    return CELLS.map(cell => {
-      return (
-        <div key={cell} className="box">
-          <Cell col={cell} row={cell} turn={this.props.turn} takeTurn={this.props.takeTurn} />
-        </div>
-      )
+    return Object.keys(GRID).map(row => {
+      return GRID[row].map(position => {
+        let coordinate = `${row}${position}`
+        return (
+          <div key={coordinate} className="box">
+            {coordinate}
+            <Cell
+              row={row}
+              position={position}
+              turn={this.props.turn}
+              takeTurn={this.props.takeTurn}
+            />
+          </div>
+        )
+      })
     })
   }
 
