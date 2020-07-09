@@ -21,3 +21,15 @@ code {
   align-items: center;
   justify-content: center;
 }
+
+.game-board {
+  display: grid;
+  grid-template-columns: 120px 120px 120px;
+  grid-template-rows: 120px 120px 120px 20px;
+  justify-content: center;
+}
+
+.box {
+  background-color: #d9d9d9;
+  border: 1px solid black;
+}

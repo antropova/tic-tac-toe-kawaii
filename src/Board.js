@@ -1,6 +1,5 @@
 import React from 'react'
 import Cell from './Cell'
-import { Grid, Row } from 'react-flexbox-grid'
 
 const GRID = {
   a: [1, 2, 3],
@@ -8,27 +7,23 @@ const GRID = {
   c: [1, 2, 3],
 }
 
-class Board extends React.Component {
-  renderBoardCols = row => {
-    return GRID[row].map(col => <Cell key={col} position={`${col}` + `${row}`} turn={this.props.turn} takeTurn={this.props.takeTurn} />);
-  }
+const CELLS = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
-  renderBoardRows = () => {
-    return Object.keys(GRID).map(row => {
+class Board extends React.Component {
+  renderCells = () => {
+    return CELLS.map(cell => {
       return (
-        <Row key={row}>
-          {this.renderBoardCols(row)}
-        </Row>
+        <div key={cell} className="box">
+          <Cell col={cell} row={cell} turn={this.props.turn} takeTurn={this.props.takeTurn} />
+        </div>
       )
     })
   }
 
   render() {
     return (
-      <div className="board">
-        <Grid fluid>
-          {this.renderBoardRows()}
-        </Grid>
+      <div className="game-board">
+        { this.renderCells() }
       </div>
     )
   }
