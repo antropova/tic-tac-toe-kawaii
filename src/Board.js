@@ -15,15 +15,13 @@ class Board extends React.Component {
       return GRID[row].map(position => {
         let coordinate = `${row}${position}`
         return (
-          <div key={coordinate} className="box">
-            {coordinate}
-            <Cell
-              row={row}
-              position={position}
-              turn={this.props.turn}
-              takeTurn={this.props.takeTurn}
-            />
-          </div>
+          <Cell
+            key={coordinate}
+            row={row}
+            position={position}
+            turn={this.props.turn}
+            takeTurn={this.props.takeTurn}
+          />
         )
       })
     })
